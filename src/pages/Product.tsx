@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useGetProductsQuery } from '../services/api';
 import { useEffect, useState } from 'react';
 import { Product as ProductType } from '../types/product';
 import QuantitySelectorCart from '../components/QuantitySelectorCart';
 import CommentsSection from '../components/CommentsSection';
+import { ChevronLeft } from 'lucide-react';
 
 const Product = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,6 +28,9 @@ const Product = () => {
   return (
     <>
       <div className="max-w-2xl m-auto p-12">
+        <Link to="/" className="flex items-center gap-1 underline mb-4 text-neutral-600 decoration-neutral-400 hover:text-neutral-900 hover:decoration-neutral-500">
+          <ChevronLeft size={16}/> Retour aux produits
+        </Link>
         <div className="flex">
           <div className="w-full p-2">
             <div className="border border-neutral-300 rounded shadow-sm p-4">
@@ -44,7 +48,11 @@ const Product = () => {
                 {product?.price_per_measure}€/{product?.unit_of_measurement}
               </p>
             </div>
-            <QuantitySelectorCart quantity={quantity} setQuantity={setQuantity} />
+            <QuantitySelectorCart
+              quantity={quantity}
+              setQuantity={setQuantity}
+              product={product}
+            />
           </div>
         </div>
 
