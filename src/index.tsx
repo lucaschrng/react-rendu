@@ -9,11 +9,16 @@ import {
 import Home from './pages/Home';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import Product from './pages/Product';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home/>,
+  },
+  {
+    path: '/products/:id',
+    element: <Product/>,
   },
 ]);
 
