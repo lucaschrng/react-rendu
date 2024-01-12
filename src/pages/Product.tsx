@@ -5,6 +5,7 @@ import { Product as ProductType } from '../types/product';
 import QuantitySelectorCart from '../components/QuantitySelectorCart';
 import CommentsSection from '../components/CommentsSection';
 import { ChevronLeft } from 'lucide-react';
+import Cart from '../components/Cart';
 
 const Product = () => {
   const { id } = useParams<{ id: string }>();
@@ -60,6 +61,8 @@ const Product = () => {
 
         <CommentsSection id={id}/>
       </div>
+
+      <Cart />
     </>
   );
 };

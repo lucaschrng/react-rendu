@@ -55,6 +55,9 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setCart((currentCart) => {
       const existingProductIndex = currentCart.findIndex(item => item.id === productId);
       if (existingProductIndex >= 0) {
+        if (cartQuantity <= 0) {
+          return currentCart.filter(item => item.id !== productId);
+        }
         const updatedCart = currentCart.slice();
         updatedCart[existingProductIndex] = {
           ...currentCart[existingProductIndex],
