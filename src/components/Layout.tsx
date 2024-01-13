@@ -4,8 +4,12 @@ import Cart from './Cart';
 const Layout = () => {
   return (
     <>
-      <Outlet />
-      <Cart />
+      <header>
+        <Cart />
+      </header>
+      <main>
+        <Outlet/>
+      </main>
     </>
   );
 };
