@@ -12,6 +12,7 @@ import { store } from './store';
 import Product from './pages/Product';
 import { CartProvider } from './providers/CartContext';
 import Layout from './components/Layout';
+import { Toaster } from 'sonner';
 
 const router = createBrowserRouter([{
   element: <Layout />,
@@ -32,6 +33,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <Toaster richColors position="top-right"/>
     <CartProvider>
       <Provider store={store}>
         <RouterProvider router={router}/>

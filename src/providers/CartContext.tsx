@@ -1,5 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 import { Product } from '../types/product';
+import { toast } from 'sonner';
 
 type CartProduct = Product & {
   cartQuantity: number;
@@ -31,8 +32,10 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
           ...currentCart[existingProductIndex],
           cartQuantity: currentCart[existingProductIndex].cartQuantity + cartQuantity
         };
+        toast.success(`${cartQuantity} "${product.title}" ${cartQuantity > 1 ? 'ont' : 'a'} été ajouté(e)${cartQuantity > 1 ? 's' : ''} au panier`);
         return updatedCart;
       } else {
+        toast.success(`${cartQuantity} "${product.title}" ${cartQuantity > 1 ? 'ont' : 'a'} été ajouté(e)${cartQuantity > 1 ? 's' : ''} au panier`);
         return [...currentCart, { ...product, cartQuantity }];
       }
     });
@@ -44,8 +47,11 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
       if (existingProductIndex >= 0) {
         const updatedCart = currentCart.slice();
         updatedCart.splice(existingProductIndex, 1);
+        const product = currentCart[existingProductIndex];
+        toast.success(`"${product.title}" a été retiré du panier`);
         return updatedCart;
       } else {
+        toast.error('Le produit n\'est pas dans le panier');
         return currentCart;
       }
     });
