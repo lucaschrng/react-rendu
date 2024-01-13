@@ -8,7 +8,7 @@ const Product = () => {
   if (id === undefined) return <div>Error</div>;
 
   return (
-    <div className="max-w-2xl m-auto p-12">
+    <div className="max-w-2xl m-auto p-12 max-sm:px-2">
       <Link to="/" className="flex items-center gap-1 underline mb-4 text-neutral-600 decoration-neutral-400 hover:text-neutral-900 hover:decoration-neutral-500">
         <ChevronLeft size={16}/> Retour aux produits
       </Link>

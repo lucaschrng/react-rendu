@@ -9,7 +9,7 @@ const Home = () => {
   if (error) return <div>{JSON.stringify(error)}</div>;
 
   return (
-    <div className="p-12">
+    <div className="p-12 max-sm:px-4">
       <h1 className="text-3xl font-bold mb-12">Products</h1>
       <div
         className="grid gap-2"

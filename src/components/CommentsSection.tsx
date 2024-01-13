@@ -39,7 +39,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ id }) => {
             className="h-8 px-2"
             onClick={() => showDialog(true)}
           >
-            <PenBox size={16} className="mr-2"/> Rédiger un commentaire
+            <PenBox size={16} className="sm:mr-2"/> <span className="max-sm:hidden">Rédiger un commentaire</span>
           </Button>
         </div>
         <div className="mt-4 grid gap-4">
