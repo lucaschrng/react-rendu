@@ -32,8 +32,7 @@ To get a local copy up and running, follow these simple steps.
     ```sh
     npm start
     ```
-
-his runs the app in the development mode. Open http://localhost:3000 to view it in the browser. The page will reload if you make edits.
+   This runs the app in the development mode. Open http://localhost:3000 to view it in the browser. The page will reload if you make edits.
 
 ## Libraries used
 
