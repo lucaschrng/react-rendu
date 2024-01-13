@@ -11,17 +11,21 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import Product from './pages/Product';
 import { CartProvider } from './providers/CartContext';
+import Layout from './components/Layout';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home/>,
-  },
-  {
-    path: '/products/:id',
-    element: <Product/>,
-  },
-]);
+const router = createBrowserRouter([{
+  element: <Layout />,
+  children: [
+    {
+      path: '/',
+      element: <Home />,
+    },
+    {
+      path: '/products/:id',
+      element: <Product />,
+    },
+  ],
+}]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

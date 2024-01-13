@@ -1,9 +1,9 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
-import { Button } from '../components/ui/button';
+import { Button } from './ui/button';
 import { PenBox } from 'lucide-react';
-import { CommentDialog } from '../components/CommentDialog';
+import { CommentDialog } from './CommentDialog';
 import { useGetProductCommentsQuery } from '../../src/services/api';
 import { useState } from 'react';
+import { Skeleton } from './ui/skeleton';
 
 type CommentsSectionProps = {
   id: string;
@@ -14,29 +14,33 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ id }) => {
 
   const [open, showDialog] = useState(false);
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error</div>;
+
+  if (isLoading) return (
+    <div className="w-full p-2">
+      <div className="flex items-center justify-between">
+        <Skeleton className="h-5 w-1/3 my-1"/>
+      </div>
+      <div className="mt-4 grid gap-4">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <Skeleton key={index} className="max-w-[560px] h-20"/>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <>
       <div className="w-full p-2">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">Commentaires</h2>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  className="p-1 aspect-square h-8 w-8"
-                  onClick={() => showDialog(true)}
-                >
-                  <PenBox size={16}/>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Rédiger un commentaire</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Button
+            variant="link"
+            className="h-8 px-2"
+            onClick={() => showDialog(true)}
+          >
+            <PenBox size={16} className="mr-2"/> Rédiger un commentaire
+          </Button>
         </div>
         <div className="mt-4 grid gap-4">
           {comments?.map((comment, index) => (

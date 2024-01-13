@@ -1,7 +1,7 @@
-import { Button } from '../components/ui/button';
+import { Button } from './ui/button';
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
-import { Input } from '../components/ui/input';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
+import { Input } from './ui/input';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { Product } from '../types/product';
 import { useCart } from '../providers/CartContext';
 
@@ -16,6 +16,7 @@ const QuantitySelectorCart: React.FC<QuantitySelectorCartProps> = ({ quantity, s
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!parseInt(e.target.value)) return;
+    if (parseInt(e.target.value) < 1) return;
     setQuantity(parseInt(e.target.value));
   };
 
@@ -25,12 +26,12 @@ const QuantitySelectorCart: React.FC<QuantitySelectorCartProps> = ({ quantity, s
   };
 
   return (
-    <div className="flex gap-1 border border-neutral-300 p-1 w-fit rounded shadow-sm w-full justify-between">
+    <div className="flex gap-1 border border-neutral-300 p-1 rounded shadow-sm w-full justify-between">
       <div className="flex gap-1">
         <Button
-          variant="secondary"
-          className="p-0.5 aspect-square"
-          onClick={() => setQuantity(quantity - 1)}
+          variant="outline"
+          size="icon"
+          onClick={() => setQuantity(Math.max(1, quantity - 1))}
         >
           <Minus size={16}/>
         </Button>
@@ -41,8 +42,8 @@ const QuantitySelectorCart: React.FC<QuantitySelectorCartProps> = ({ quantity, s
           onChange={handleInputChange}
         />
         <Button
-          variant="secondary"
-          className="p-0.5 aspect-square"
+          variant="outline"
+          size="icon"
           onClick={() => setQuantity(quantity + 1)}
         >
           <Plus size={16}/>

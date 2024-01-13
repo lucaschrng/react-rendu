@@ -1,9 +1,9 @@
 import { Product } from '../types/product';
-import { Button } from '../components/ui/button';
+import { Button } from './ui/button';
 import { Minus, Plus, Trash } from 'lucide-react';
-import { Input } from '../components/ui/input';
+import { Input } from './ui/input';
 import { useCart } from '../providers/CartContext';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
 type CartProductProps = {
   product: Product & { cartQuantity: number };
@@ -32,7 +32,7 @@ const CartProduct: React.FC<CartProductProps> = ({ product }) => {
       <div className="flex gap-1 rounded w-full justify-between items-center">
         <div className="flex gap-1">
           <Button
-            variant="secondary"
+            variant="outline"
             className="p-0.5 aspect-square w-8 h-8"
             onClick={() => updateCartQuantity(product.id, product.cartQuantity - 1)}
           >
@@ -45,7 +45,7 @@ const CartProduct: React.FC<CartProductProps> = ({ product }) => {
             onChange={handleInputChange}
           />
           <Button
-            variant="secondary"
+            variant="outline"
             className="p-0.5 aspect-square w-8 h-8"
             onClick={() => updateCartQuantity(product.id, product.cartQuantity + 1)}
           >

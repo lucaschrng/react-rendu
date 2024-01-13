@@ -1,4 +1,4 @@
-import { Button } from '../components/ui/button';
+import { Button } from './ui/button';
 import {
   Sheet,
   SheetClose,
@@ -8,11 +8,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '../components/ui/sheet';
+} from './ui/sheet';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../providers/CartContext';
-import CartProduct from '../components/CartProduct';
-import { ScrollArea } from '../components/ui/scroll-area';
+import CartProduct from './CartProduct';
+import { ScrollArea } from './ui/scroll-area';
 
 const Cart = () => {
   const { cart } = useCart();
@@ -58,7 +58,7 @@ const Cart = () => {
                 Total: <span className="font-bold">{Math.round(cart.reduce((acc, item) => acc + item.cartQuantity * parseFloat(item.price), 0) * 100) / 100}€</span>
               </p>
               <SheetClose asChild>
-                <Button type="submit">Passer au paiement</Button>
+                <Button variant="secondary" type="submit">Passer au paiement</Button>
               </SheetClose>
             </SheetFooter>
           </div>
