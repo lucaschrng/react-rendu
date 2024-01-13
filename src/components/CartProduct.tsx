@@ -12,6 +12,11 @@ type CartProductProps = {
 const CartProduct: React.FC<CartProductProps> = ({ product }) => {
   const { updateCartQuantity, removeFromCart } = useCart();
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!parseInt(e.target.value)) return;
+    updateCartQuantity(product.id, parseInt(e.target.value));
+  };
+
   return (
     <div className="relative grid gap-4 p-3 border border-neutral-300 rounded shadow-sm">
       <div className="flex gap-4">
@@ -37,7 +42,7 @@ const CartProduct: React.FC<CartProductProps> = ({ product }) => {
             type="text"
             className="w-8 h-8 text-sm text-center outline-none focus-visible:ring-offset-0"
             value={product.cartQuantity}
-            onChange={(e) => updateCartQuantity(product.id, parseInt(e.target.value))}
+            onChange={handleInputChange}
           />
           <Button
             variant="secondary"

@@ -40,9 +40,9 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ id }) => {
         </div>
         <div className="mt-4 grid gap-4">
           {comments?.map((comment, index) => (
-            <div key={index} className="border border-neutral-300 rounded shadow-sm p-4">
+            <div key={index} className="max-w-[560px] border border-neutral-300 rounded shadow-sm p-4">
               <p className="text-sm text-muted-foreground font-semibold">{comment.username}</p>
-              <p>{comment.comment}</p>
+              <p style={{ wordWrap: 'break-word' }}>{comment.comment}</p>
             </div>
           ))}
         </div>
